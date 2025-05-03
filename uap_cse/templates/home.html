@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/icofont.css' %}">
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+    <link rel="stylesheet" href="{% static 'css/faculty.css' %}">
+
+{% endblock %}
+
+{% block content %}
+    <br><br><br>
+    {#        <div class="gradient-text" style="justify-content: center;!important;">#}
+
+
+
+ <div class="uap-cse-head" style="text-align: center; display: flex; align-items: center; justify-content: center;">
+    <div>
+
+        <h1 class="gradient-text-global text-center fw-bold ">Department of CSE</h1>
+   <hr/>
+        <div id="iconContainer">
+     <img id="animatedIcon" src="{% static 'img/uap_logo.png' %}" alt="UAP Logo">
+        </div>
+{#        <h1 class="gradient-text-global text-center mb-5">#}
+{#    <span id="animatedText">University of Asia Pacific</span>#}
+{#</h1>#}
+
+       <div class="text-new" id="animatedText">
+           <h1 class="gradient-text-global text-center mb-5">University of Asia Pacific</h1>
+       </div>
+    </div>
+</div>
+
+
+    <div class="container py-5">
+        <div class="row justify-content-center g-4">
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
+                <a href="{% url 'why_cse'%}" class="glass-card-link">
+                <div class="glass-card">
+                    <div class="div-img">
+                        <img src="{% static 'img/hero/1.png' %}" alt="">
+                    </div>
+                    <span class="glass-text">Why study CSE at UAP?</span></div>
+            </a>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
+                <div class="glass-card">
+                       <div class="div-img">
+                        <img src="{% static 'img/hero/2.png' %}" alt="" class="glass-card-link">
+                    </div>
+                    <span class="glass-text">Faculty & Staff</span></div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
+               <a href="{% url 'icpc_event_view' %}" class="glass-card-link">
+                <div class="glass-card">
+                    <div class="div-img">
+                        <img src="{% static 'img/hero/3.png' %}" alt="">
+                    </div>
+                    <span class="glass-text">Proud Host of ICPC World Final 2022</span></div>
+           </a>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
+                <a href="{% url 'clubs' %}" class="glass-card-link">
+                <div class="glass-card">
+                      <div class="div-img">
+                        <img src="{% static 'img/hero/4.png' %}" alt="" class="glass-card-link">
+                    </div>
+                    <span class="glass-text">Club & Events</span></div>
+                </a>
+            </div>
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
+                <a href="{% url 'notice_board' %}" class="glass-card-link">
+                <div class="glass-card">
+                        <div class="div-img">
+                        <img src="{% static 'img/hero/5.png' %}" alt="" class="glass-card-link">
+                    </div>
+                    <span class="glass-text">Notice Board</span></div>
+                </a>
+            </div>
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
+                 <a href="{% url 'waiver' %}" class="glass-card-link">
+                <div class="glass-card">
+                    <div class="div-img">
+                        <img src="{% static 'img/hero/6.png' %}" alt="" class="glass-card-link">
+                    </div>
+                    <span class="glass-text">Get upto 100% scholarship!</span></div>
+                 </a>
+            </div>
+        </div>
+    </div>
+
+    <hr style="border: 3px solid #b3a8cb; /* Increased thickness of the hr */
+  width: 90%; /* Adjust the length to match heading width */
+  margin: 1.5rem auto; /* Centers the hr and adds spacing */
+  border-radius: 1rem; /* Rounded corners */">
+
+    <div class="container py-5">
+        <div class="row justify-content-center g-4" style="margin: 2%">
+
+            <!-- Mission Card -->
+            <div class="col-12 col-md-6 col-lg-4 d-flex">
+                <div class="mission-card p-4 w-100 text-center d-flex flex-column">
+                    <i class="icofont icofont-medal"></i>
+                    <span class="glass-text d-block mb-2">Mission</span>
+                    <p class="flex-grow-1" style="text-align: justify;">
+                        The department of CSE, UAP is striving for a pioneer role in ICT through excellence in education, research and development towards preparing graduates as a global leader with quality education, innovative ideas, extracurricular activities and collaboration between industry and academia.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Vision Card -->
+            <div class="col-12 col-md-6 col-lg-4 d-flex">
+                <div class="mission-card p-4 w-100 text-center d-flex flex-column">
+                    <i class="icofont icofont-brainstorming"></i>
+                    <span class="glass-text d-block mb-2">Vision</span>
+                    <p class="flex-grow-1" style="text-align: justify;">
+                        The Department of CSE believes in the pursuit of excellence by developing students in creating, applying and imparting knowledge of ICT. Educational curriculum, research and collaboration between academia and industry are given the highest priority. CSE, UAP aspires to produce graduates capable of taking leadership in the field of their best.<br><br>
+                        We nurture graduates in:<br>
+                        • Understanding the basic principles of computational, electronic and modern technologies.<br>
+                        • Promoting creativity by applying their theoretical knowledge in practical problem-solving.<br>
+                        • Enabling them to communicate ideas clearly and concisely both in written and verbal forms.<br>
+                        • Creating awareness about environment, social responsibility, and economic development within the ethical boundaries.<br>
+                        • Engaging for further research or professional involvement.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Inside CSE, UAP Card -->
+            <div class="col-12 col-md-6 col-lg-4 d-flex">
+                <div class="mission-card p-4 w-100 text-center d-flex flex-column">
+                    <i class="icofont icofont-university"></i>
+                    <span class="glass-text d-block mb-2">Inside CSE, UAP</span>
+                    <p class="flex-grow-1" style="text-align: justify;">
+                        Explore our vibrant campus culture, well-equipped labs, dynamic classrooms, passionate faculty, and student-driven clubs that shape future innovators.
+                    </p> <br>
+                    <iframe height="250" src="https://www.youtube.com/embed/azdNa4-F6FQ?si=nyDCqTkxCIZjCap0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Fact and figure & its model located at academics app's models.py-->
+    <div class="container py-5">
+    <h2 class="gradient-text-global text-center mb-4">Facts and Figures</h2>
+    <div class="facts-container">
+    {% for fact in facts %}
+        <div class="fact-item">
+            <h3>{{ fact.title }}</h3>
+            <p>{{ fact.description|safe }}</p>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+
+
+    <a href="{% url 'tester' %}"><h2 class="gradient-text-global">TEST!!</h2></a>
+<script>
+    const words = ["Excellence", "Strive", "Innovate", "Learn", "Grow"];
+    const gradients = [
+        "linear-gradient(108.4deg, rgb(204, 146, 177) 6.9%, rgb(113, 111, 185) 86.5%)"
+    ];
+
+    let index = 0;
+    const textElement = document.getElementById('animatedText');
+
+    function changeText() {
+        textElement.innerText = words[index];
+        textElement.style.background = gradients[Math.floor(Math.random() * gradients.length)];
+        textElement.style.webkitBackgroundClip = "text";
+        textElement.style.color = "transparent";
+        textElement.style.animation = "none";
+        void textElement.offsetWidth;
+        textElement.style.animation = "shutter 5s ease-in-out forwards";
+
+        // Ensure the text returns to full opacity before next animation starts
+        setTimeout(() => {
+            textElement.style.opacity = "100";
+        }, 4500);
+
+        index = (index + 1) % words.length;
+    }
+
+    setInterval(changeText, 6000);
+</script>
+<script>
+    const icons = [
+        "icofont-graduate",
+        "icofont-university",
+        "icofont-abc",
+        "icofont-medal"
+    ];
+
+    let iconIndex = 0;
+
+    function changeIcon() {
+        let iconElement = document.getElementById("animatedIcon");
+
+        // **Step 1: Fade Out Smoothly**
+        iconElement.style.transition = "opacity 1.5s ease-in-out, transform 1.5s ease-in-out";
+        iconElement.style.opacity = "0";
+        iconElement.style.transform = "translateY(-10px)";
+
+        // **Step 2: AFTER fade-out completes, change the icon**
+        setTimeout(() => {
+            if (iconElement.tagName.toLowerCase() === "img") {
+                iconElement.outerHTML = `<i id="animatedIcon" class="icofont ${icons[iconIndex]}"></i>`;
+            } else {
+                iconIndex = (iconIndex + 1) % icons.length;
+                iconElement.outerHTML = `<i id="animatedIcon" class="icofont ${icons[iconIndex]}"></i>`;
+            }
+
+            // **Step 3: Update reference to newly created icon element**
+            iconElement = document.getElementById("animatedIcon");
+
+            // **Step 4: Fade-in smoothly after update**
+            setTimeout(() => {
+                iconElement.style.opacity = "1";
+                iconElement.style.transform = "translateY(0px)";
+            }, 500); // Ensures no flashing
+        }, 1500); // Change the icon AFTER previous fade-out completes
+    }
+
+    setTimeout(changeIcon, 5000); // First change happens after 6 seconds
+    setInterval(changeIcon, 5000); // Icons change every 6 seconds
+</script>
+
+{% endblock %}
