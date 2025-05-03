@@ -1,0 +1,206 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UAP CSE Navbar</title>
+
+  {% block head %}
+
+  {% endblock %}
+    <link rel="stylesheet" href="{% static 'icons/icofont.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+
+</head>
+<body>
+
+<header id="navbar">
+    <div class="logo">
+{#        <div style="display: inline; align-items: center;">#}
+            <a href="{% url 'home' %}" class="nav-item"><img src="{% static 'img/logo.png' %}" alt="Logo"></a>
+{#    </div>#}
+{#        UAP︱CSE#}
+    </div>
+
+    <nav role="navigation">
+        <div class="nav-container">
+            <ul class="nav-links" id="navLinks">
+
+                <li><a href="{% url 'home' %}" class="nav-item">Home</a></li>
+                <li>
+                    <a href="#" class="nav-item">Admission</a>
+                    <div class="dropdown">
+                        <a href="{% url 'undergraduate' %}">Undergraduate</a>
+                        <a href="{% url 'graduate' %}">Graduate</a>
+                        <a href="{% url 'tuition'%}">Tuition Fee</a>
+                         <a href="{% url 'admission_results' %}">Admission Result</a>
+
+                    </div>
+                </li>
+                <li>
+                    <a href="#" class="nav-item">Academic</a>
+                    <div class="dropdown">
+                        <a href="#">Programs</a>
+                        <a href="{% url 'curriculum' %}">Curriculum</a>
+                        <a href="{% url 'course' %}">Courses</a>
+                        <a href="{% url 'faculty' %}">Faculty</a>
+                        <a href="{% url 'notice_board' %}">Notices</a>
+                        <a href="{% url 'routine_view' %}">Routine</a>
+                        <a href="{% url 'exam_routine' %}">Exam Routine</a>
+                        <a href="{% url 'academic_calendar_view' %}">Academic Calender</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" class="nav-item">More</a>
+                    <div class="dropdown">
+                        <a href="#">Research</a>
+                        <a href="{% url 'clubs'%}">Clubs</a>
+                        <a href="{% url 'others:alumni'%}">Alumni </a>
+                        <a href="{% url 'mission_view'%}">Mission & Outcome</a>
+                        <a href="https://uap-bd.edu/contactus.php">Contact</a>
+                        <a href="{% url 'login'%}">Login</a>
+                    </div>
+                </li>
+                <div class="buttons">
+                    <li class="apply-mobile"><a href="https://admission.uap-bd.edu/Admission/Home.aspx" class="apply-btn">Apply Now</a></li>
+                    <li class="theme-toggle">
+                        <i class="icofont icofont-dark-mode"></i>
+                    </li>
+                </div>
+
+            </ul>
+            <div class="hamburger" id="hamburger" aria-label="Toggle navigation menu">&#9776;</div>
+        </div>
+    </nav>
+
+</header>
+<br>
+<br>
+<main>
+        <div class="animated-container">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+</main>
+
+<script>
+    const navbar = document.getElementById("navbar");
+    const navLinks = document.getElementById("navLinks");
+    const hamburger = document.getElementById("hamburger");
+    const navItems = document.querySelectorAll(".nav-item");
+
+    window.addEventListener("load", () => {
+        navbar.classList.add("loaded");
+    });
+
+    let hasShrunk = false;
+    let lastScroll = 0;
+
+    window.addEventListener("scroll", () => {
+        const currentScroll = window.scrollY;
+
+        if (currentScroll > lastScroll && currentScroll > 50 && !hasShrunk) {
+            navbar.classList.add("shrink");
+            hasShrunk = true;
+        } else if (currentScroll < lastScroll && currentScroll < 50 && hasShrunk) {
+            navbar.classList.remove("shrink");
+            hasShrunk = false;
+        }
+
+        lastScroll = currentScroll;
+    });
+    document.querySelectorAll('.nav-links > li').forEach(item => {
+        const link = item.querySelector('.nav-item');
+        const dropdown = item.querySelector('.dropdown');
+        const icon = document.createElement('i');
+
+        if (dropdown) {
+            icon.classList.add('icofont-rounded-down');
+            link.classList.add('dropdown-toggle');
+            link.appendChild(icon);
+
+            link.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+
+                    const isOpen = dropdown.classList.contains('open');
+                    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+                    document.querySelectorAll('.icofont-rounded-down').forEach(i => i.classList.remove('rotate-icon'));
+
+                    if (!isOpen) {
+                        dropdown.classList.add('open');
+                        icon.classList.add('rotate-icon');
+                    }
+                }
+            });
+        }
+    });
+
+    hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("open");
+    });
+
+    // Dropdown toggle on mobile
+    document.querySelectorAll('.nav-links > li').forEach(item => {
+        item.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                const dropdown = item.querySelector('.dropdown');
+                if (dropdown) {
+                    e.preventDefault();
+                    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+                }
+            }
+        });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener("click", function (e) {
+        if (!navbar.contains(e.target) && navLinks.classList.contains("open")) {
+            navLinks.classList.remove("open");
+        }
+    });
+    // Dark mode
+    document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.querySelector('.theme-toggle');
+    const body = document.body;
+    const moonIcon = themeToggle.querySelector('i');
+
+    // Check for saved theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        body.classList.add(savedTheme);
+        moonIcon.textContent = savedTheme === 'dark-mode' ? '☀️' : '🌙';
+    }
+
+    themeToggle.addEventListener('click', () => {
+        // Add rotation class
+        themeToggle.classList.add('rotate');
+        
+        // Toggle dark mode
+        body.classList.toggle('dark-mode');
+        const isDarkMode = body.classList.contains('dark-mode');
+        
+        // Update icon with slight delay to match rotation
+        setTimeout(() => {
+            moonIcon.textContent = isDarkMode ? '☀️' : '🌙';
+        }, 150);
+
+        // Store theme preference
+        localStorage.setItem('theme', isDarkMode ? 'dark-mode' : '');
+
+        // Remove rotation class after animation
+        setTimeout(() => {
+            themeToggle.classList.remove('rotate');
+        }, 500);
+    });
+});
+
+</script>
+
+</body>
+</html>
