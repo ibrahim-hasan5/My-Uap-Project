@@ -38,7 +38,47 @@
 {% endblock %}
 
 {% block content %}
+<div class="banner-global">
+  <h1 class="gradient-text-global">Course List</h1>
+</div>
 
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#1stYear1stSemester">1st Year 1st Semester</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#1stYear2ndSemester">1st Year 2nd Semester</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#2ndYear1stSemester">2nd Year 1st Semester</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#2ndYear2ndSemester">2nd Year 2nd Semester</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#3rdYear1stSemester">3rd Year 1st Semester</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#3rdYear2ndSemester">3rd Year 2nd Semester</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#4thYear1stSemester">4th Year 1st Semester</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#4thYear2ndSemester">4th Year 2nd Semester</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <a href="{% url 'add-course' %}">Add course</a>
 <!-- 1st year 1st semester-->
 <section class="section py-5" id="1stYear1stSemester">
