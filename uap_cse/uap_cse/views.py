@@ -23,22 +23,7 @@ def faculty_detail(request, pk):
     papers = get_or_cache_best_papers(faculty.google_scholar_url)
     return render(request, 'faculty/faculty_detail.html', {'faculty_profile': faculty, 'papers':papers})
 
-def undergraduate(request):
-    return render(request, 'hard_html/undergraduate.html')
 
-def graduate(request):
-    return render(request, 'hard_html/graduate.html')
-
-def tuition(request):
-    return render(request, 'hard_html/tuition.html')
-
-def why_cse(request):
-    return render(request, 'hard_html/why_cse.html')
-
-
-def clubs(request):
-    clubs = Club.objects.all()
-    return render(request, 'clubs/clubs.html', {"clubs": clubs})
 
 def test(request):
     clubs = Club.objects.all()
