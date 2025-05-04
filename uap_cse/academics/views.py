@@ -123,3 +123,50 @@ def delete_fact(request, pk):
     fact_and_figures.objects.get(pk=pk).delete()
     return redirect('edit-fact')
 
+@allowed_email_role_required(min_role='3')
+def edit_course(request):
+    courses = Course.objects.all()
+    prerequisites = Prerequisite.objects.all()
+    return render(request, 'academics/edit_course.html', {
+        "courses":courses,
+        "prerequisites":prerequisites,
+    })
+@allowed_email_role_required(min_role='3')
+def edit_fact(request):
+    facts = fact_and_figures.objects.all()
+    return render(request, 'academics/edit_fact.html', {
+        "facts":facts
+    })
+
+from .import forms
+
+@allowed_email_role_required(min_role='3')
+def add_course(request):
+    if request.method=="POST":
+        form=forms.CourseForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('edit-course')
+    else:
+        form=forms.CourseForm()
+    return render(request,'forms.html',{
+        "form":form,
+    })
+
+@allowed_email_role_required(min_role='3')
+def update_course(request, pk):
+    course = Course.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = forms.CourseForm(request.POST or None, instance=course)
+        if form.is_valid():
+            form.save()
+            return redirect('edit-course')
+    else:
+        form = forms.CourseForm(instance=course)
+    return render(request, 'forms.html', {
+        'form': form})
+@allowed_email_role_required(min_role='3')
+def delete_course(request, pk):
+    Course.objects.get(pk=pk).delete()
+    return redirect('edit-course')
+
