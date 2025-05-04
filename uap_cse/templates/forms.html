@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Update Faculty{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/faculty.css' %}">
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+
+{% endblock %}
+
+{% block content %}
+   
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.media }}
+    {{ form.as_p }}
+    <button type="submit" value="ok">submit</button>
+</form>
+
+{% endblock %}
