@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/icofont.css' %}">
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+    <link rel="stylesheet" href="{% static 'css/faculty.css' %}">
+
+{% endblock %}
+
+{% block content %}
+<a href="{% url 'add-fact' %}">Add Fact</a>
+    <!--Fact and figure & its model located at academics app's models.py-->
+    <div class="container py-5">
+    <h2 class="gradient-text-global text-center mb-4">Facts and Figures</h2>
+    <div class="facts-container">
+    {% for fact in facts %}
+        <div class="fact-item">
+            <h3>{{ fact.title }}</h3>
+            <p>{{ fact.description|safe }}</p>
+            <a href="{% url 'update-fact' fact.id %}">Update Fact</a>
+            <a href="{% url 'delete-fact' fact.id %}">Delete Fact</a>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+
+
+    <a href="{% url 'tester' %}"><h2 class="gradient-text-global">TEST!!</h2></a>
+<script>
+    const words = ["Excellence", "Strive", "Innovate", "Learn", "Grow"];
+    const gradients = [
+        "linear-gradient(108.4deg, rgb(204, 146, 177) 6.9%, rgb(113, 111, 185) 86.5%)"
+    ];
+
+    let index = 0;
+    const textElement = document.getElementById('animatedText');
+
+    function changeText() {
+        textElement.innerText = words[index];
+        textElement.style.background = gradients[Math.floor(Math.random() * gradients.length)];
+        textElement.style.webkitBackgroundClip = "text";
+        textElement.style.color = "transparent";
+        textElement.style.animation = "none";
+        void textElement.offsetWidth;
+        textElement.style.animation = "shutter 5s ease-in-out forwards";
+
+        // Ensure the text returns to full opacity before next animation starts
+        setTimeout(() => {
+            textElement.style.opacity = "100";
+        }, 4500);
+
+        index = (index + 1) % words.length;
+    }
+
+    setInterval(changeText, 6000);
+</script>
+<script>
+    const icons = [
+        "icofont-graduate",
+        "icofont-university",
+        "icofont-abc",
+        "icofont-medal"
+    ];
+
+    let iconIndex = 0;
+
+    function changeIcon() {
+        let iconElement = document.getElementById("animatedIcon");
+
+        // **Step 1: Fade Out Smoothly**
+        iconElement.style.transition = "opacity 1.5s ease-in-out, transform 1.5s ease-in-out";
+        iconElement.style.opacity = "0";
+        iconElement.style.transform = "translateY(-10px)";
+
+        // **Step 2: AFTER fade-out completes, change the icon**
+        setTimeout(() => {
+            if (iconElement.tagName.toLowerCase() === "img") {
+                iconElement.outerHTML = `<i id="animatedIcon" class="icofont ${icons[iconIndex]}"></i>`;
+            } else {
+                iconIndex = (iconIndex + 1) % icons.length;
+                iconElement.outerHTML = `<i id="animatedIcon" class="icofont ${icons[iconIndex]}"></i>`;
+            }
+
+            // **Step 3: Update reference to newly created icon element**
+            iconElement = document.getElementById("animatedIcon");
+
+            // **Step 4: Fade-in smoothly after update**
+            setTimeout(() => {
+                iconElement.style.opacity = "1";
+                iconElement.style.transform = "translateY(0px)";
+            }, 500); // Ensures no flashing
+        }, 1500); // Change the icon AFTER previous fade-out completes
+    }
+
+    setTimeout(changeIcon, 5000); // First change happens after 6 seconds
+    setInterval(changeIcon, 5000); // Icons change every 6 seconds
+</script>
+
+{% endblock %}
