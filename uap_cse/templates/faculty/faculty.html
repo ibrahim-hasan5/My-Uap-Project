@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Our Faculty{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/faculty.css' %}">
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="banner-global">
+    <h1 class="gradient-text-global-big-size">Faculty</h1>
+</div>
+
+<div class="container">
+    <!-- Head of Department -->
+    <h1 class="gradient-text-global text-center">Head of the Department</h1>
+    <hr class="fat_hr">
+    <div class="row g-4 justify-content-center">
+        {% for faculty in facultys %}
+            {% if faculty.sl == 1 %}
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="faculty-card text-center">
+                    <div class="profile-img-container">
+                        <a href="{% url 'faculty_detail' faculty.pk %}">
+                            <img src="{{ faculty.profile_pic.url }}" alt="Faculty" class="profile-img" />
+                        </a>
+                    </div>
+                    <div class="card-body text-start">
+                        <div class="top-row mb-1">
+                            <div>
+                                <div class="gradient-text-global card-title">
+                                    <a href="{% url 'faculty_detail' faculty.pk %}" class="no-underline">{{ faculty.name }}</a>
+                                </div>
+                                <div class="card-subtitle">{{ faculty.designation }} & Head</div>
+                            </div>
+                            <div class="citation-count">Citations: {{ faculty.citation }}</div>
+                        </div>
+                        <p class="card-text">{{ faculty.bio }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<br>
+
+<!-- Professors Section -->
+<div class="container">
+    <h1 class="gradient-text-global text-center">Professors</h1>
+    <hr class="fat_hr">
+    <div class="row g-4 justify-content-center">
+        {% for faculty in facultys %}
+            {% if faculty.designation == "Professor" and faculty.sl != 1 %}
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                {% include "faculty/faculty_card.html" %}
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<br>
+
+<!-- Associate Professors Section -->
+<div class="container">
+    <h1 class="gradient-text-global text-center">Associate Professors</h1>
+    <hr class="fat_hr">
+    <div class="row g-4 justify-content-center">
+        {% for faculty in facultys %}
+            {% if faculty.designation == "Associate Professor" and faculty.sl != 1 %}
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                {% include "faculty/faculty_card.html" %}
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<br>
+
+<!-- Assistant Professors Section -->
+<div class="container">
+    <h1 class="gradient-text-global text-center">Assistant Professors</h1>
+    <hr class="fat_hr">
+    <div class="row g-4 justify-content-center">
+        {% for faculty in facultys %}
+            {% if faculty.designation == "Assistant Professor" and faculty.sl != 1 %}
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                {% include "faculty/faculty_card.html" %}
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<br>
+
+<!-- Lecturers Section -->
+<div class="container">
+    <h1 class="gradient-text-global text-center">Lecturers</h1>
+    <hr class="fat_hr">
+    <div class="row g-4 justify-content-center">
+        {% for faculty in facultys %}
+            {% if faculty.designation == "Lecturer" and faculty.sl != 1 %}
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                {% include "faculty/faculty_card.html" %}
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<br>
+
+<!-- Teaching Assistants Section -->
+<div class="container">
+    <h1 class="gradient-text-global text-center">Teaching Assistants</h1>
+    <hr class="fat_hr">
+    <div class="row g-4 justify-content-center">
+        {% for faculty in facultys %}
+            {% if faculty.designation == "Teaching Assistant" and faculty.sl != 1 %}
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                {% include "faculty/faculty_card.html" %}
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

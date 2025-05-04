@@ -4,54 +4,6 @@ from django.shortcuts import render, redirect
 # Create your views here.
 # views.py
 from django.shortcuts import render
-from .models import Curriculum
-
-def curriculum_view(request):
-    curriculums = Curriculum.objects.all()
-    return render(request, 'files/curriculum.html', {
-        'curriculums': curriculums,
-    })
-# views.py
-from django.shortcuts import render
-from .models import Mission
-
-def mission_view(request):
-    missions = Mission.objects.all()  # Fetch all the mission PDFs from the database
-    return render(request, 'files/mission.html', {
-        'missions': missions,
-    })
-# views.py
-from django.shortcuts import render
-from .models import AcademicCalendar
-
-def academic_calendar_view(request):
-    calendars = AcademicCalendar.objects.all()
-    return render(request, 'files/academic_calendar.html', {
-        'calendars': calendars
-    })
-# views.py
-from django.shortcuts import render
-from .models import ICPCEventSection
-
-def icpc_event_view(request):
-    sections = ICPCEventSection.objects.all()
-    return render(request, 'files/icpc_event.html', {'sections': sections})
-
-# views.py
-from django.shortcuts import render
-from .models import AdmissionResult
-
-
-def admission_result_view(request):
-    written_results = AdmissionResult.objects.filter(category='written')
-    final_results = AdmissionResult.objects.filter(category='final')
-    waiting_results = AdmissionResult.objects.filter(category='waiting')
-
-    return render(request, 'files/admission_result.html', {
-        'written_results': written_results,
-        'final_results': final_results,
-        'waiting_results': waiting_results,
-    })
 
 
 from django.shortcuts import render

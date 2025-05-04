@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Update Faculty{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/faculty.css' %}">
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <h1 class="gradient-text-global text-center mb-4">Manage Faculty Profiles</h1>
+
+    {% if messages %}
+    <div class="message-container mb-4">
+        {% for message in messages %}
+            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="row g-4 justify-content-center">
+        {% for i in facultys %}
+
+        <div class="faculty-card p-4 mb-5">
+          <div class="row g-3 align-items-start">
+            <!-- Image Section -->
+            <div class="col-md-4 text-center">
+              {% if i.profile_pic %}
+                <img src="{{ i.profile_pic.url }}" alt="{{ i.name }}" class="img-fluid rounded cover-img" />
+              {% else %}
+                <img src="{% static 'images/default_profile.png' %}" alt="No Image" class="img-fluid rounded cover-img" />
+              {% endif %}
+            </div>
+
+            <!-- Content Section -->
+            <div class="col-md-8">
+              <h5 class="mb-1 gradient-text-global">{{ i.name }}</h5>
+              <p class="mb-1">{{ i.designation }}</p>
+              <div class="text-end mb-1">
+                <small>Citations:</small><br>
+                <strong>{{ i.citation }}</strong>
+              </div>
+
+                <p class="mb-1"><strong>Username:</strong> {{ i.user.username }}</p>
+                <p class="mb-1"><strong>Shortname:</strong> {{ i.shortname }}</p>
+                <p class="mb-1"><strong>Joined:</strong> {{ i.joining_date }}</p>
+                <p class="mb-1"><strong>Phone:</strong> {{ i.phone }}</p>
+                <p class="mb-1"><strong>Bio:</strong> {{ i.bio|truncatewords:20 }}</p>
+                <p class="mb-1"><strong>About:</strong> {{ i.about|safe }}</p>
+
+              {% if i.google_scholar_url %}
+                <a href="{% url 'faculty_research' i.id %}" class="btn btn-outline-primary btn-sm mt-2">View Research</a>
+              {% endif %}
+              <a href="{% url 'update-faculty' i.id %}" class="btn btn-primary btn-sm mt-2">Update Profile</a>
+                <a href="{% url 'edit-course' %}">Edit Course</a>
+                <a href="{% url 'edit-fact' %}">Edit Fact</a>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

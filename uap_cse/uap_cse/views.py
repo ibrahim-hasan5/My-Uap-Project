@@ -18,13 +18,6 @@ def faculty(request):
         'facultys' : facultys
     })
 
-def faculty_detail(request, pk):
-    faculty = get_object_or_404(Faculty, pk=pk)
-    papers = get_or_cache_best_papers(faculty.google_scholar_url)
-    return render(request, 'faculty/faculty_detail.html', {'faculty_profile': faculty, 'papers':papers})
-
-
-
 def test(request):
     clubs = Club.objects.all()
     return render(request, 'clubs/test.html', {"clubs": clubs})

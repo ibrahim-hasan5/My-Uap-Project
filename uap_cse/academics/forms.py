@@ -1,10 +1,6 @@
 from django import forms
-from .models import Notice, Course
+from .models import  Course
 
-class NoticeBoardForm(forms.ModelForm):
-    class Meta:
-        model = Notice
-        fields = ['title', 'image', 'description']
 
 
 class CourseForm(forms.ModelForm):
