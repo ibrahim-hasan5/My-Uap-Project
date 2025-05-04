@@ -170,3 +170,19 @@ def delete_course(request, pk):
     Course.objects.get(pk=pk).delete()
     return redirect('edit-course')
 
+
+@allowed_email_role_required(min_role='3')
+def set_prerequisite(request, pk):
+    course = Course.objects.get(pk=pk)
+    if request.method == "POST":
+        form = forms.PrerequisiteForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.course = course
+            instance.save()
+            return redirect('edit-course')
+    else:
+        form = forms.PrerequisiteForm()
+    return render(request, 'forms.html', {
+        "form": form,
+    })
