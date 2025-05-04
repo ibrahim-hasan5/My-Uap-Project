@@ -32,9 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'faculty',
-    'clubs',
     'academics',
-    'others',
     'ckeditor',
     'django.contrib.admin',
     'django.contrib.auth',
